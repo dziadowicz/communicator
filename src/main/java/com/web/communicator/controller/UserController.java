@@ -46,15 +46,17 @@ public class UserController {
 
     @GetMapping("/token")
     public String value(@RequestParam String value) {
-        // todo throw if not exist
-        Token byValue = tokenRepo.findByValue(value).get();
-        User user = byValue.getUser();
+//         todo throw if not exist
+        Token token = tokenRepo.findByValue(value).get();
+        User user = token.getUser();
         user.setEnabled(true);
         userRepo.save(user);
-        return "Nice to see you";
-    }
+        if (tokenRepo.findByValue(value).get().getUser().isEnabled()) {
+            return "login";
+        } else {return "sign-up";}
 /*    @RequestMapping("/logout")
     public String logout(Map<String, Object> model) {
         return "logout";
     }*/
+    }
 }

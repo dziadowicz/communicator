@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Entity(name = "token")
+@Entity(name = "TOKEN")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Token {

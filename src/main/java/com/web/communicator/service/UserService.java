@@ -38,6 +38,7 @@ public class UserService {
     private void sendToken(User user) {
         String tokenValue = UUID.randomUUID().toString();
         Token token = new Token();
+        token.setUser(user);
         token.setValue(tokenValue);
         tokenRepo.save(token);
 
