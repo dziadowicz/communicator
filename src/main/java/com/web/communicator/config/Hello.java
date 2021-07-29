@@ -1,5 +1,6 @@
 package com.web.communicator.config;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ public class Hello {
         return "Hello2";
     }
 
-/*    @RequestMapping("/login")
+    /*    @RequestMapping("/login")
     public String login(Map<String, Object> model) {
         return "jetbrains://idea/navigate/reference?project=communicator&path=templates/login.html";
     }*/

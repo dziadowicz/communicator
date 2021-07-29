@@ -38,9 +38,19 @@ public class UserController {
         return "sign-up";
     }
 
+    @GetMapping("/error")
+    public String sayHello2() {
+        return "error";
+    }
+
     @PostMapping("/register")
-    public String register(User user) {
-        userService.addUser(user);
+    public String register(User user, Model model) {
+        if (userRepo.findByUsername(user.getUsername()).isPresent()) {
+            model.addAttribute("wrongName", true);
+            // todo wrong email
+        } else {
+            userService.addUser(user);
+        }
         return "sign-up";
     }
 
@@ -50,13 +60,9 @@ public class UserController {
         Token token = tokenRepo.findByValue(value).get();
         User user = token.getUser();
         user.setEnabled(true);
-        userRepo.save(user);
+        userService.saveUser(user);
         if (tokenRepo.findByValue(value).get().getUser().isEnabled()) {
             return "login";
         } else {return "sign-up";}
-/*    @RequestMapping("/logout")
-    public String logout(Map<String, Object> model) {
-        return "logout";
-    }*/
     }
 }

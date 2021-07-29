@@ -29,10 +29,17 @@ public class UserService {
 
     public void addUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEmail(user.getEmail());
+//        user.setEmail(user.getEmail());
+//        user.setPhone(user.getPhone());
+//        user.setFirstname(user.getFirstname());
+//        user.setLastname(user.getLastname());
         user.setRole("ROLE_USER");
         userRepo.save(user);
         sendToken(user);
+    }
+
+    public void saveUser(User user) {
+        userRepo.save(user);
     }
 
     private void sendToken(User user) {
